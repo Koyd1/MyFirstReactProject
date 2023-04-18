@@ -26,7 +26,8 @@ function App() {
       {posts.length !== 0 ? (
         <PostList remove={removePost} posts={posts} title="Список постов 1" />
       ) : (
-        <h1 style={{ textAlign: 'center' }}> Посты не найдены!</h1>
+        <h1 style={{ textAlign: 'center' }}> Посты не найдены!</h1> 
+        // Когда нет постов
       )}
     </div>
   );
