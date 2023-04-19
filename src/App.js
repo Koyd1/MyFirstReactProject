@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import './components/styles/App.css';
 import PostList from './components/postList';
 import PostForm from './components/UI/PostForm';
@@ -15,15 +15,18 @@ function App() {
 const [selectedSort, setSelectedSort] = useState('')
 const [searchQuery, setSeachQuery] = useState('')
 
-function getSortedPosts() {
-  console.log('sssssssss')
+const sortedPosts = useMemo( () => {
+  console.log('Rita')
   if (selectedSort) {
     return [...posts].sort((a, b) => a [selectedSort].localeCompare(b [selectedSort]))
   }
   return posts;
-}
+}, [selectedSort, posts] );
 
-const sortedPosts = getSortedPosts();
+const sortedAndSeachedPosts = useMemo(() =>{
+return sortedPosts.filter(post => post.title.toLowerCase().includes(searchQuery))
+},[searchQuery, sortedPosts])
+
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
   };
@@ -57,8 +60,8 @@ const sortPost = (sort) => {
         ]}
         />
       </div>
-      {posts.length !== 0 ? (
-        <PostList remove={removePost} posts={sortedPosts} title='Список постов 1' />
+      {sortedAndSeachedPosts.length !== 0 ? (
+        <PostList remove={removePost} posts={sortedAndSeachedPosts} title='Список постов 1' />
       ) : (
         <h1 style={{ textAlign: 'center' }}> Посты не найдены!</h1> 
         // Когда нет постов
