@@ -1,12 +1,13 @@
 * {
-margin: 0px;
-padding: 0px;
+margin: 0;
+padding: 0;
 box-sizing: border-box;
 }
 
 #root {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .App{
@@ -50,4 +51,15 @@ box-sizing: border-box;
 .page__current{
     border: 2px solid orange;
     font-weight: bold;
+}
+.navbar{
+    height: 50px;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: lightgray;
+}
+.navbar__links{
+    margin-left: auto;
 }
